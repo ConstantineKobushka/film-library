@@ -20,7 +20,7 @@ function App() {
         setLoading(true);
         const response = await getTrendingMovies();
         const data = response.results;
-        // setMovies(data);
+        setMovies(data);
         console.log(movies);
       } catch (error) {
         setError((prevState) => {
