@@ -1,0 +1,34 @@
+.item {
+  width: calc((100% - 60px) / 4);
+  position: relative;
+  box-shadow:
+    0 1px 6px 0 rgba(17, 17, 22, 0.16),
+    0 1px 1px 0 rgba(17, 17, 22, 0.16),
+    0 2px 1px 0 rgba(17, 17, 22, 0.16);
+  transition: transform 0.2s ease-in;
+}
+.item:hover {
+  transform: scale(1.02);
+}
+.img {
+  object-fit: cover;
+  width: 100%;
+}
+.descr {
+  padding: 10px;
+}
+.title {
+  margin-bottom: 10px;
+}
+.overview {
+  margin-bottom: 10px;
+}
+.date {
+}
+.link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

@@ -1,7 +1,13 @@
-import React from 'react';
+import MovieList from '../../components/MovieList/MovieList';
 
-const HomePage = () => {
-  return <div>HomePage</div>;
+import css from './HomePage.module.css';
+
+const HomePage = ({ movies }) => {
+  return (
+    <div className={css.container}>
+      <MovieList movies={movies} />
+    </div>
+  );
 };
 
 export default HomePage;
