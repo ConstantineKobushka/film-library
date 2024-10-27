@@ -4,6 +4,8 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
 import MovieList from '../../components/MovieList/MovieList';
+import Loader from '../../components/Loader/Loader';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 import { getSearchMovies } from '../../api/moviesApi';
 
@@ -17,8 +19,7 @@ const notify = () =>
 
 const MoviesPage = () => {
   const [foundMovies, setFoundMovies] = useState(null);
-  // const [searchMovies, setSearchMovies] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ isError: false, errorMessage: '' });
   const [searchParams, setSearchParams] = useSearchParams();
   const searchValue = searchParams.get('query');
@@ -41,7 +42,7 @@ const MoviesPage = () => {
     const fetchSearchMovies = async () => {
       try {
         setError(false);
-        setLoading(true);
+        setIsLoading(true);
         const response = await getSearchMovies(searchValue);
         const data = response.results;
         setFoundMovies(data);
@@ -49,12 +50,12 @@ const MoviesPage = () => {
         setError((prevState) => {
           return {
             ...prevState,
-            errorMessage: error.message,
+            errorMessage: error.response.data.status_message,
             isError: true,
           };
         });
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     fetchSearchMovies();
@@ -76,7 +77,12 @@ const MoviesPage = () => {
         </button>
         <Toaster />
       </form>
-      <MovieList movies={foundMovies} state={location} />
+      {error.isError ? (
+        <ErrorMessage>{error.errorMessage}</ErrorMessage>
+      ) : (
+        <MovieList movies={foundMovies} state={location} />
+      )}
+      {isLoading && <Loader />}
     </section>
   );
 };

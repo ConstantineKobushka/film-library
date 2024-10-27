@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Loader from '../Loader/Loader';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+
 import { getMoviesCast } from '../../api/moviesApi';
 
 import css from './MovieCast.module.css';
 
 const MovieCast = () => {
   const [castMovies, setCastMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ isError: false, errorMessage: '' });
 
   const { movieId } = useParams();
@@ -16,7 +19,7 @@ const MovieCast = () => {
     const fetchTrendingMovies = async () => {
       try {
         setError(false);
-        setLoading(true);
+        setIsLoading(true);
         const response = await getMoviesCast(movieId);
         const data = response.cast;
         setCastMovies(data);
@@ -24,35 +27,43 @@ const MovieCast = () => {
         setError((prevState) => {
           return {
             ...prevState,
-            errorMessage: error.message,
+            errorMessage: error.response.data.status_message,
             isError: true,
           };
         });
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     fetchTrendingMovies();
   }, [movieId]);
 
   return (
-    <ul className={css.list}>
-      {castMovies !== 0 &&
-        castMovies.map((cast) => (
-          <li className={css.item} key={cast.cast_id}>
-            <img
-              className={css.img}
-              src={`https://image.tmdb.org/t/p/w200/${cast.profile_path}`}
-              alt={cast.original_name}
-              loading='lezy'
-            />
-            <div className={css.descr}>
-              <h3 className={css.title}>{cast.original_name}</h3>
-              <p className={css.text}>{cast.character}</p>
-            </div>
-          </li>
-        ))}
-    </ul>
+    <>
+      {error.isError ? (
+        <ErrorMessage>{error.errorMessage}</ErrorMessage>
+      ) : (
+        <ul className={css.list}>
+          {castMovies !== 0 &&
+            castMovies.map((cast) => (
+              <li className={css.item} key={cast.cast_id}>
+                <img
+                  className={css.img}
+                  src={`https://image.tmdb.org/t/p/w200/${cast.profile_path}`}
+                  alt={cast.original_name}
+                  loading='lezy'
+                />
+                <div className={css.descr}>
+                  <h3 className={css.title}>{cast.original_name}</h3>
+                  <p className={css.text}>{cast.character}</p>
+                </div>
+              </li>
+            ))}
+        </ul>
+      )}
+
+      {isLoading && <Loader />}
+    </>
   );
 };
 

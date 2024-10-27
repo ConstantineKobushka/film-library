@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import MovieList from '../../components/MovieList/MovieList';
+import Loader from '../../components/Loader/Loader';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 import { getTrendingMovies } from '../../api/moviesApi';
 
@@ -8,27 +10,27 @@ import css from './HomePage.module.css';
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState({ isError: false, errorMessage: '' });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, seterror] = useState({ isError: false, errorMessage: '' });
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
       try {
-        setError(false);
-        setLoading(true);
+        seterror({ ...error, isError: false });
+        setIsLoading(true);
         const response = await getTrendingMovies();
         const data = response.results;
         setTrendingMovies(data);
       } catch (error) {
-        setError((prevState) => {
+        seterror((prevState) => {
           return {
             ...prevState,
-            errorMessage: error.message,
+            errorMessage: error.response.data.status_message,
             isError: true,
           };
         });
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     fetchTrendingMovies();
@@ -37,8 +39,8 @@ const HomePage = () => {
   return (
     <section className={css.section}>
       <div className={css.container}>
-        <MovieList movies={trendingMovies} />
-        {/* <MovieList movies={trendingMovies} state={ location}/> */}
+        {error.isError ? <ErrorMessage>{error.errorMessage}</ErrorMessage> : <MovieList movies={trendingMovies} />}
+        {isLoading && <Loader />}
       </div>
     </section>
   );

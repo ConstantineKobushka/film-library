@@ -4,10 +4,12 @@ import { useParams } from 'react-router-dom';
 import { getMoviesReviews } from '../../api/moviesApi';
 
 import css from './MovieReviews.module.css';
+import Loader from '../Loader/Loader';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const MovieReviews = () => {
   const [reviewsMovies, setReviewsMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ isError: false, errorMessage: '' });
 
   const { movieId } = useParams();
@@ -16,7 +18,7 @@ const MovieReviews = () => {
     const fetchTrendingMovies = async () => {
       try {
         setError(false);
-        setLoading(true);
+        setIsLoading(true);
         const response = await getMoviesReviews(movieId);
         const data = response.results;
         setReviewsMovies(data);
@@ -24,12 +26,12 @@ const MovieReviews = () => {
         setError((prevState) => {
           return {
             ...prevState,
-            errorMessage: error.message,
+            errorMessage: error.response.data.status_message,
             isError: true,
           };
         });
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     fetchTrendingMovies();
@@ -44,7 +46,8 @@ const MovieReviews = () => {
             <p className={css.text}>{review.content}</p>
           </div>
         ))}
-      {reviewsMovies.length === 0 && <p>error</p>}
+      {isLoading && <Loader />}
+      {error.isError ? <ErrorMessage>{error.errorMessage}</ErrorMessage> : <p>No comments</p>}
     </>
   );
 };
