@@ -1,0 +1,21 @@
+.searchForm {
+  display: flex;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 20px;
+  box-shadow:
+    0 1px 6px 0 rgba(17, 17, 22, 0.16),
+    0 1px 1px 0 rgba(17, 17, 22, 0.16),
+    0 2px 1px 0 rgba(17, 17, 22, 0.16);
+}
+.searchInput {
+  border: none;
+  outline: none;
+  padding: 5px;
+  order: 1;
+}
+.searchBtn {
+  border: none;
+  padding: 5px;
+  background-color: #fff;
+}

@@ -1,50 +1,29 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 
-import Navigation from './components/Navigation/Navigation';
-import HomePage from './pages/HomePage/HomePage';
-import MoviesPage from './pages/MoviesPage/MoviesPage';
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-
-import { getTrendingMovies } from './api/moviesApi';
+const Navigation = lazy(() => import('./components/Navigation/Navigation'));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
+const MovieDetailsPage = lazy(() => import('./pages/MovieDetailsPage/MovieDetailsPage'));
+const MovieCast = lazy(() => import('./components/MovieCast/MovieCast'));
+const MovieReviews = lazy(() => import('./components/MovieReviews/MovieReviews'));
 
 function App() {
-  const [movies, setMovies] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState({ isError: false, errorMessage: '' });
-
-  useEffect(() => {
-    const fetchTrendingMovies = async () => {
-      try {
-        setError(false);
-        setLoading(true);
-        const response = await getTrendingMovies();
-        const data = response.results;
-        setMovies(data);
-        console.log(movies);
-      } catch (error) {
-        setError((prevState) => {
-          return {
-            ...prevState,
-            errorMessage: error.message,
-            isError: true,
-          };
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchTrendingMovies();
-  }, []);
-
   return (
     <>
       <Navigation />
-      <Routes>
-        <Route path='/' element={<HomePage movies={movies} />} />
-        <Route path='/movies' element={<MoviesPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
+      <Suspense>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/movies' element={<MoviesPage />} />
+          <Route path='/movies/:movieId' element={<MovieDetailsPage />}>
+            <Route path='cast' element={<MovieCast />} />
+            <Route path='reviews' element={<MovieReviews />} />
+          </Route>
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }

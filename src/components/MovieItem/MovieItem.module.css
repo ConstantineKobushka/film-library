@@ -1,4 +1,6 @@
 .item {
+  display: flex;
+  flex-direction: column;
   width: calc((100% - 60px) / 4);
   position: relative;
   box-shadow:
@@ -16,9 +18,13 @@
 }
 .descr {
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 .title {
   margin-bottom: 10px;
+  flex-grow: 1;
 }
 .overview {
   margin-bottom: 10px;
