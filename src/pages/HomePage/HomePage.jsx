@@ -35,9 +35,12 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className={css.container}>
-      <MovieList movies={trendingMovies} />
-    </div>
+    <section className={css.section}>
+      <div className={css.container}>
+        <MovieList movies={trendingMovies} />
+        {/* <MovieList movies={trendingMovies} state={ location}/> */}
+      </div>
+    </section>
   );
 };
 

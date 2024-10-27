@@ -18,7 +18,6 @@ const MovieCast = () => {
         setError(false);
         setLoading(true);
         const response = await getMoviesCast(movieId);
-        console.log(response);
         const data = response.cast;
         setCastMovies(data);
       } catch (error) {
@@ -35,8 +34,6 @@ const MovieCast = () => {
     };
     fetchTrendingMovies();
   }, [movieId]);
-
-  console.log(castMovies);
 
   return (
     <ul className={css.list}>

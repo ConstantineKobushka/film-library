@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import css from './MovieItem.module.css';
 
-const MovieItem = ({ id, poster_path, title, release_date }) => {
+const MovieItem = ({ id, poster_path, title, release_date, state }) => {
   return (
     <li className={css.item}>
       <img className={css.img} src={`https://image.tmdb.org/t/p/w400/${poster_path}`} alt={title} loading='lezy' />
@@ -11,7 +11,7 @@ const MovieItem = ({ id, poster_path, title, release_date }) => {
         <p className={css.date}>Release Date: {release_date}</p>
       </div>
 
-      <Link className={css.link} to={`/movies/${id}`}></Link>
+      <Link className={css.link} to={`/movies/${id}`} state={state}></Link>
     </li>
   );
 };

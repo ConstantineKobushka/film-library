@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { getMoviesById } from '../../api/moviesApi';
@@ -10,6 +10,8 @@ const MovieDetailsPage = () => {
   const [movieDetail, setMovieDetails] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ isError: false, errorMessage: '' });
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { movieId } = useParams();
 
@@ -39,10 +41,15 @@ const MovieDetailsPage = () => {
     return clsx(css.link, isActive && css.active);
   };
 
+  const backUrl = location?.state || '/';
+  const goBackHandler = () => navigate(backUrl);
+
   return (
     <section className={css.section}>
       <div className={css.container}>
-        <button className={css.btn}>👈 Go back</button>
+        <button className={css.btn} type='button' onClick={goBackHandler}>
+          👈 Go back
+        </button>
         <div className={css.wrapper}>
           <img
             className={css.img}
@@ -74,12 +81,12 @@ const MovieDetailsPage = () => {
           <p className={css.text}>Additional information</p>
           <ul className={css.list}>
             <li className={css.item}>
-              <NavLink className={navLinkClass} to='cast'>
+              <NavLink className={navLinkClass} to='cast' state={backUrl}>
                 Cast
               </NavLink>
             </li>
             <li className={css.item}>
-              <NavLink className={navLinkClass} to='reviews'>
+              <NavLink className={navLinkClass} to='reviews' state={backUrl}>
                 Reviews
               </NavLink>
             </li>
