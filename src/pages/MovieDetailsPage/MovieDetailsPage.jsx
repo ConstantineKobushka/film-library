@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { NavLink, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -44,8 +44,8 @@ const MovieDetailsPage = () => {
     return clsx(css.link, isActive && css.active);
   };
 
-  const backUrl = location?.state || '/';
-  const goBackHandler = () => navigate(backUrl);
+  const backUrl = useRef(location?.state || '/');
+  const goBackHandler = () => navigate(backUrl.current);
 
   return (
     <>
@@ -86,12 +86,12 @@ const MovieDetailsPage = () => {
               <p className={css.text}>Additional information</p>
               <ul className={css.list}>
                 <li className={css.item}>
-                  <NavLink className={navLinkClass} to='cast' state={backUrl}>
+                  <NavLink className={navLinkClass} to='cast' state={backUrl.current}>
                     Cast
                   </NavLink>
                 </li>
                 <li className={css.item}>
-                  <NavLink className={navLinkClass} to='reviews' state={backUrl}>
+                  <NavLink className={navLinkClass} to='reviews' state={backUrl.current}>
                     Reviews
                   </NavLink>
                 </li>
