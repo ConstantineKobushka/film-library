@@ -18,7 +18,12 @@ const notify = () =>
   });
 
 const MoviesPage = () => {
-  const [foundMovies, setFoundMovies] = useState(null);
+  function initialMovies() {
+    const moviesFromLocalStorage = localStorage.getItem('movies');
+    return moviesFromLocalStorage ? JSON.parse(moviesFromLocalStorage) : null;
+  }
+
+  const [foundMovies, setFoundMovies] = useState(initialMovies());
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ isError: false, errorMessage: '' });
   const [searchParams, setSearchParams] = useSearchParams();
@@ -45,6 +50,7 @@ const MoviesPage = () => {
         const response = await getSearchMovies(searchValue);
         const data = response.results;
         setFoundMovies(data);
+        localStorage.setItem('movies', JSON.stringify(data));
       } catch (error) {
         setError((prevState) => {
           return {

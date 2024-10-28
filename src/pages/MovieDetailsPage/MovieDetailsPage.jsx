@@ -78,12 +78,10 @@ const MovieDetailsPage = () => {
                     ))}
                   </p>
                 </div>
-
                 <p className={css.text}>Release date: {movieDetail.release_date}</p>
                 <p className={css.text}>User Score: {Math.floor(movieDetail.popularity)}%</p>
               </div>
             </div>
-
             <div className={css.info}>
               <p className={css.text}>Additional information</p>
               <ul className={css.list}>
