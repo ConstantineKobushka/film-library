@@ -1,6 +1,11 @@
 .section {
   padding: 20px 0;
 }
+.container {
+  max-width: 320px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
 .searchForm {
   display: flex;
   width: 300px;
@@ -20,4 +25,15 @@
   border: none;
   padding: 5px;
   background-color: #fff;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
 }

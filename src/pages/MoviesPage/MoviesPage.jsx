@@ -32,7 +32,6 @@ const MoviesPage = () => {
       return;
     }
     const searchValue = e.target.elements.search.value;
-    // setSearchMovies(searchValue);
     setSearchParams({ query: searchValue });
     e.target.reset();
   }
@@ -63,26 +62,28 @@ const MoviesPage = () => {
 
   return (
     <section className={css.section}>
-      <form className={css.searchForm} onSubmit={onSubmitHandler}>
-        <input
-          className={css.searchInput}
-          type='text'
-          name='search'
-          autoComplete='off'
-          autoFocus
-          placeholder='Search movies'
-        />
-        <button className={css.searchBtn} type='submit'>
-          🔍
-        </button>
-        <Toaster />
-      </form>
-      {error.isError ? (
-        <ErrorMessage>{error.errorMessage}</ErrorMessage>
-      ) : (
-        <MovieList movies={foundMovies} state={location} />
-      )}
-      {isLoading && <Loader />}
+      <div className={css.container}>
+        <form className={css.searchForm} onSubmit={onSubmitHandler}>
+          <input
+            className={css.searchInput}
+            type='text'
+            name='search'
+            autoComplete='off'
+            autoFocus
+            placeholder='Search movies'
+          />
+          <button className={css.searchBtn} type='submit'>
+            🔍
+          </button>
+          <Toaster />
+        </form>
+        {error.isError ? (
+          <ErrorMessage>{error.errorMessage}</ErrorMessage>
+        ) : (
+          <MovieList movies={foundMovies} state={location} />
+        )}
+        {isLoading && <Loader />}
+      </div>
     </section>
   );
 };

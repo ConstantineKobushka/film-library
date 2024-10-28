@@ -2,7 +2,7 @@
   padding: 20px 0;
 }
 .container {
-  max-width: 1440px;
+  max-width: 320px;
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -11,10 +11,12 @@
 }
 .wrapper {
   display: flex;
+  flex-wrap: wrap;
   gap: 30px;
   margin-bottom: 20px;
 }
 .img {
+  object-fit: cover;
 }
 .descr {
 }
@@ -61,4 +63,15 @@
   text-decoration: underline 1px solid #cd1f3e;
   text-underline-offset: 3px;
   color: #cd1f3e;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
 }
