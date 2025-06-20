@@ -1,5 +1,7 @@
 # Film Library – A Convenient Solution for Finding Your Favorite Movies 🎬
 
+🔗 **Live Demo:** [https://goit-react-hw-05-two-omega-84.vercel.app/](https://goit-react-hw-05-two-omega-84.vercel.app/)
+
 ## 🔎 Project Description
 
 **Film Library** is a modern web application that helps you find trending or specific movies in just seconds. You can explore what’s popular right now or search for any film by name.
