@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
   position: relative;
   box-shadow:
     0 1px 6px 0 rgba(17, 17, 22, 0.16),

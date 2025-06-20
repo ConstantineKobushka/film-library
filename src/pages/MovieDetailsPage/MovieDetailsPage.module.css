@@ -7,6 +7,9 @@
   margin: 0 auto;
 }
 .btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #000;
   margin-bottom: 20px;
 }
 .wrapper {
@@ -17,8 +20,7 @@
 }
 .img {
   object-fit: cover;
-}
-.descr {
+  border-radius: 5px;
 }
 .title {
   margin-bottom: 40px;
@@ -26,16 +28,8 @@
 .inner {
   margin-bottom: 40px;
 }
-.text {
-}
 .subTitle {
   margin-bottom: 10px;
-}
-.text {
-}
-.subTitle {
-}
-.text {
 }
 .info {
   margin-bottom: 20px;

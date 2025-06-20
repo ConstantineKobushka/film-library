@@ -1,5 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
-import { NavLink, Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
+import {
+  NavLink,
+  Outlet,
+  useParams,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import clsx from 'clsx';
 
 import Loader from '../../components/Loader/Loader';
@@ -55,7 +61,7 @@ const MovieDetailsPage = () => {
         ) : (
           <div className={css.container}>
             <button className={css.btn} type='button' onClick={goBackHandler}>
-              👈 Go back
+              Go back
             </button>
             <div className={css.wrapper}>
               <img
@@ -78,20 +84,32 @@ const MovieDetailsPage = () => {
                     ))}
                   </p>
                 </div>
-                <p className={css.text}>Release date: {movieDetail.release_date}</p>
-                <p className={css.text}>User Score: {Math.floor(movieDetail.popularity)}%</p>
+                <p className={css.text}>
+                  Release date: {movieDetail.release_date}
+                </p>
+                <p className={css.text}>
+                  User Score: {Math.floor(movieDetail.popularity)}%
+                </p>
               </div>
             </div>
             <div className={css.info}>
               <p className={css.text}>Additional information</p>
               <ul className={css.list}>
                 <li className={css.item}>
-                  <NavLink className={navLinkClass} to='cast' state={backUrl.current}>
+                  <NavLink
+                    className={navLinkClass}
+                    to='cast'
+                    state={backUrl.current}
+                  >
                     Cast
                   </NavLink>
                 </li>
                 <li className={css.item}>
-                  <NavLink className={navLinkClass} to='reviews' state={backUrl.current}>
+                  <NavLink
+                    className={navLinkClass}
+                    to='reviews'
+                    state={backUrl.current}
+                  >
                     Reviews
                   </NavLink>
                 </li>
