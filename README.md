@@ -1,8 +1,62 @@
-# React + Vite
+# Film Library – A Convenient Solution for Finding Your Favorite Movies 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🔎 Project Description
 
-Currently, two official plugins are available:
+**Film Library** is a modern web application that helps you find trending or specific movies in just seconds. You can explore what’s popular right now or search for any film by name.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Each movie card provides valuable details: a high-quality poster, overview, genre, release date, cast, and user reviews. With a fast interface and intuitive navigation, **Film Library** is your go-to movie companion.
+
+Perfect for those who love **cinema**, **convenience**, and **quality**.
+
+---
+
+## 🌟 Core Features
+
+- 🔍 **Instant Search**
+
+  - Search by movie title
+  - Real-time results without page reload
+
+- 📄 **Detailed Movie Card**
+  - High-quality poster
+  - Title
+  - Overview
+  - Genre
+  - Release date
+  - Cast
+  - Reviews
+
+---
+
+## 🧰 Tech Stack
+
+### 🔨 Frontend
+
+- **Vite** – ultra-fast build tool
+- **React 18** – UI library
+- **React Router DOM v7** – routing
+- **Axios** – API requests
+
+### 🎨 UI and UX
+
+- **CSS Modules + modern-normalize** – modular and balanced styles
+- **react-hot-toast** – toast notifications
+- **react-loader-spinner** – loading indicators
+- **clsx** – conditional class application
+
+---
+
+## 🚀 Installation and Launch
+
+### 🔧 Requirements:
+
+- Node.js (latest LTS recommended)
+- npm or yarn
+
+### 📦 Installation:
+
+```bash
+git clone https://github.com/ConstantineKobushka/film-library.git
+cd film-library
+npm install
+```
