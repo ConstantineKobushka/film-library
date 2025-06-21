@@ -1,6 +1,6 @@
 # Film Library – Зручне Рішення для Пошуку Улюблених фільмів 🎬
 
-🔗 **Демо:** [https://goit-react-hw-05-two-omega-84.vercel.app/](https://goit-react-hw-05-two-omega-84.vercel.app/)
+🔗 **Демо:** [https://goit-react-hw-05-two-omega-84.vercel.app](https://goit-react-hw-05-two-omega-84.vercel.app)
 
 ## 🔎 Опис проєкту
 
