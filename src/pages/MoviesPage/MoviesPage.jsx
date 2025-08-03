@@ -70,6 +70,9 @@ const MoviesPage = () => {
     <section className={css.section}>
       <div className={css.container}>
         <form className={css.searchForm} onSubmit={onSubmitHandler}>
+          <button className={css.searchBtn} type='submit'>
+            🔍
+          </button>
           <input
             className={css.searchInput}
             type='text'
@@ -78,9 +81,7 @@ const MoviesPage = () => {
             autoFocus
             placeholder='Search movies'
           />
-          <button className={css.searchBtn} type='submit'>
-            🔍
-          </button>
+
           <Toaster />
         </form>
         {error.isError ? (

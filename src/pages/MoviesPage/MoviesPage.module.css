@@ -14,16 +14,17 @@
     0 1px 6px 0 rgba(17, 17, 22, 0.16),
     0 1px 1px 0 rgba(17, 17, 22, 0.16),
     0 2px 1px 0 rgba(17, 17, 22, 0.16);
+  border-radius: 5px;
 }
 .searchInput {
   border: none;
   outline: none;
   padding: 5px;
-  order: 1;
 }
 .searchBtn {
   border: none;
-  padding: 5px;
+  border-radius: 5px;
+  padding: 5px 10px;
   background-color: #fff;
 }
 
