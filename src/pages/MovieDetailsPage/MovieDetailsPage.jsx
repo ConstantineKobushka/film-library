@@ -56,6 +56,7 @@ const MovieDetailsPage = () => {
   return (
     <>
       <section className={css.section}>
+        {isLoading && <Loader />}
         {error.isError ? (
           <ErrorMessage>{error.errorMessage}</ErrorMessage>
         ) : (
@@ -118,7 +119,6 @@ const MovieDetailsPage = () => {
             <Outlet />
           </div>
         )}
-        {isLoading && <Loader />}
       </section>
     </>
   );
