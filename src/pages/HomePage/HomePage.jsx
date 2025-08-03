@@ -7,11 +7,13 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { getTrendingMovies } from '../../api/moviesApi';
 
 import css from './HomePage.module.css';
+import { useLocation } from 'react-router-dom';
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, seterror] = useState({ isError: false, errorMessage: '' });
+  const location = useLocation();
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
@@ -39,7 +41,16 @@ const HomePage = () => {
   return (
     <section className={css.section}>
       <div className={css.container}>
-        {error.isError ? <ErrorMessage>{error.errorMessage}</ErrorMessage> : <MovieList movies={trendingMovies} />}
+        {error.isError ? (
+          <ErrorMessage>{error.errorMessage}</ErrorMessage>
+        ) : (
+          <MovieList
+            movies={trendingMovies}
+            state={{
+              from: location,
+            }}
+          />
+        )}
         {isLoading && <Loader />}
       </div>
     </section>

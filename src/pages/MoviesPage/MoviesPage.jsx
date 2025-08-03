@@ -87,7 +87,12 @@ const MoviesPage = () => {
         {error.isError ? (
           <ErrorMessage>{error.errorMessage}</ErrorMessage>
         ) : (
-          <MovieList movies={foundMovies} state={location} />
+          <MovieList
+            movies={foundMovies}
+            state={{
+              from: location,
+            }}
+          />
         )}
         {isLoading && <Loader />}
       </div>

@@ -50,7 +50,7 @@ const MovieDetailsPage = () => {
     return clsx(css.link, isActive && css.active);
   };
 
-  const backUrl = useRef(location?.state || '/');
+  const backUrl = useRef(location?.state.from || '/');
   const goBackHandler = () => navigate(backUrl.current);
 
   return (
