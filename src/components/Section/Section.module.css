@@ -1,0 +1,20 @@
+.section {
+  padding: 20px 0;
+  padding: 10px 0;
+  max-width: 425px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: linear-gradient(90deg, #596808 22.71%, #c6e327 99.91%);
+}
+
+@media only screen and (min-width: 768px) {
+  .section {
+    max-width: 768px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .section {
+    max-width: 1440px;
+  }
+}

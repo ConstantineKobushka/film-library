@@ -1,0 +1,230 @@
+.btn {
+  display: block;
+  max-width: 200px;
+  height: 35px;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 12px;
+  color: #fafafa;
+  margin: 0 0 10px auto;
+  position: relative;
+  z-index: 0;
+}
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+.btn::before {
+  background: linear-gradient(90deg, #001958 22.71%, #0041e8 99.91%);
+  opacity: 1;
+}
+.btn::after {
+  background: linear-gradient(90deg, #0041e8 22.71%, #001958 99.91%);
+  opacity: 0;
+}
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+.poster {
+  width: 100%;
+}
+.img {
+  border-radius: 5px;
+}
+.info {
+  width: 100%;
+  padding: 10px 0;
+}
+.top {
+  margin-bottom: 25px;
+}
+.title {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.year {
+  font-weight: 400;
+}
+.list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+}
+.item {
+  position: relative;
+}
+.item + .item {
+  padding-left: 15px;
+}
+.item::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #000000;
+}
+.item:first-child::after {
+  content: none;
+}
+.genres {
+  display: flex;
+  gap: 10px;
+}
+.link {
+  display: inline-block;
+  max-width: 200px;
+  height: 41px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  color: #fafafa;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 0;
+}
+.link::before,
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+  pointer-events: none;
+}
+.link::before {
+  background: linear-gradient(90deg, #001958 22.71%, #0041e8 99.91%);
+  opacity: 1;
+}
+.link::after {
+  background: linear-gradient(90deg, #0041e8 22.71%, #001958 99.91%);
+  opacity: 0;
+}
+.description {
+  margin-bottom: 20px;
+}
+.headline {
+  margin-bottom: 10px;
+}
+.text {
+  font-size: 18px;
+}
+.navLink {
+  font-weight: 600;
+  text-decoration: underline 1px solid #000000;
+  text-underline-offset: 5px;
+  transition:
+    color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    text-decoration-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.navLink + .navLink {
+  display: inline-block;
+  margin-left: 30px;
+}
+.navLink.active {
+  color: #fcf394;
+  text-decoration-color: #fcf394;
+}
+
+@media only screen and (min-width: 768px) {
+  .inner {
+    gap: 25px;
+  }
+  .poster {
+    width: calc((100% - 25px) / 2);
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 10px 0;
+    width: calc((100% - 25px) / 2);
+  }
+  .description {
+    flex-grow: 1;
+  }
+  .text {
+    min-height: 220px;
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  .text::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgba(250, 250, 250, 0.4);
+    border-radius: 15px;
+  }
+  .text::-webkit-scrollbar-thumb {
+    height: 10px;
+    border-radius: 15px;
+    border: 2px solid rgb(117 117 119);
+    background: linear-gradient(90deg, #001958 22.71%, #0041e8 99.91%);
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .btn {
+    transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn:hover::after,
+  .btn:focus-visible:after {
+    opacity: 1;
+  }
+  .btn:hover,
+  .btn:focus-visible {
+    color: #fcf394;
+    background: linear-gradient(90deg, #0041e8 22.71%, #001958 99.91%);
+  }
+  .inner {
+    gap: 50px;
+  }
+  .poster {
+    width: calc((100% - 50px) / 3);
+  }
+  .info {
+    width: calc((100% - 50px) / 2);
+  }
+  .top {
+    margin-bottom: 100px;
+  }
+  .link {
+    margin-bottom: 100px;
+    transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .link:hover::after,
+  .link:focus-visible:after {
+    opacity: 1;
+  }
+  .link:hover,
+  .link:focus-visible {
+    color: #fcf394;
+    background: linear-gradient(90deg, #0041e8 22.71%, #001958 99.91%);
+  }
+  .description {
+    margin-bottom: 0;
+  }
+  .text {
+    max-height: none;
+    overflow-y: initial;
+  }
+  .navLink:hover,
+  .navLink:focus-visible {
+    color: #fcf394;
+    text-decoration-color: #fcf394;
+  }
+}

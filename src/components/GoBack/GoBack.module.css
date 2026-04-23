@@ -1,0 +1,47 @@
+.btn {
+  display: block;
+  max-width: 200px;
+  height: 35px;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 12px;
+  color: #fafafa;
+  margin: 0 0 10px auto;
+  position: relative;
+  z-index: 0;
+}
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+.btn::before {
+  background: linear-gradient(90deg, #001958 22.71%, #0041e8 99.91%);
+  opacity: 1;
+}
+.btn::after {
+  background: linear-gradient(90deg, #0041e8 22.71%, #001958 99.91%);
+  opacity: 0;
+}
+
+@media only screen and (min-width: 1440px) {
+  .btn {
+    transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn:hover::after,
+  .btn:focus-visible:after {
+    opacity: 1;
+  }
+  .btn:hover,
+  .btn:focus-visible {
+    color: #fcf394;
+    background: linear-gradient(90deg, #0041e8 22.71%, #001958 99.91%);
+  }
+}

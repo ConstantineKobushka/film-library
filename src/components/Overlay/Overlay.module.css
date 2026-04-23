@@ -1,0 +1,10 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  background: linear-gradient(90deg, rgba(89, 104, 8, 0.5) 22.71%, rgba(198, 227, 39, 0.5) 99.91%);
+}
