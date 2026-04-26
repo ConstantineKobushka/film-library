@@ -11,6 +11,7 @@ const moviesInstance = axios.create({
   },
   params: {
     include_adult: false,
+    // language: 'en-US',
     language: 'uk-UA',
   },
 });
@@ -68,12 +69,20 @@ export const getSerialReviews = async id => {
   return data;
 };
 
-export const getMovieTraler = async id => {
-  const { data } = await moviesInstance.get(`movie/${id}/videos`);
+export const getMovieTraler = async (id, language = 'uk-UA') => {
+  const { data } = await moviesInstance.get(`movie/${id}/videos`, {
+    params: {
+      language,
+    },
+  });
   return data;
 };
 
-export const getSerialTraler = async id => {
-  const { data } = await moviesInstance.get(`tv/${id}/videos`);
+export const getSerialTrailer = async (id, language = 'uk-UA') => {
+  const { data } = await moviesInstance.get(`tv/${id}/videos`, {
+    params: {
+      language,
+    },
+  });
   return data;
 };

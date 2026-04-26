@@ -4,50 +4,43 @@ import { Outlet, useParams } from 'react-router-dom';
 
 import Section from '../../components/Section/Section';
 import Container from '../../components/Container/Container';
-import MovieDetailsItem from '../../components/MovieDetailsItem/MovieDetailsItem';
+import SerialDetailsItem from '../../components/SerialDetailsItem/SerialDetailsItem';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 
-import { getMovieById, getMovieTraler } from '../../api/moviesApi';
+import { getSerialById, getSerialTraler } from '../../api/moviesApi';
 
-const MovieDetailsPage = () => {
-  const [movieDetails, setMovieDetails] = useState(null);
+const SerialsDetailsPage = () => {
+  const [serialDetails, setSerialDetails] = useState(null);
   const [trailerKey, setTreilerKey] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({ isError: false, errorMessage: '' });
-  const { movieId } = useParams();
+  const { serialId } = useParams();
 
   useEffect(() => {
     let isMounted = true;
 
-    const fetchMovieDetails = async () => {
+    const fetchSerialsDetails = async () => {
       try {
         setIsLoading(true);
         setError({
           isError: false,
           errorMessage: '',
         });
-        const [movieData, trailerUk, trailerEn] = await Promise.all([
-          getMovieById(movieId),
-          getMovieTraler(movieId, 'uk-UA'),
-          getMovieTraler(movieId, 'en-US'),
+        const [serialData, trailerData] = await Promise.all([
+          getSerialById(serialId),
+          getSerialTraler(serialId),
         ]);
 
         if (!isMounted) return;
 
-        setMovieDetails(movieData);
-
+        setSerialDetails(serialData);
         const key =
-          trailerUk?.results?.find(
+          trailerData?.results?.find(
             item => item.site === 'YouTube' && item.type === 'Trailer'
           )?.key ||
-          trailerUk?.results?.[0]?.key ||
-          trailerEn?.results?.find(
-            item => item.site === 'YouTube' && item.type === 'Trailer'
-          )?.key ||
-          trailerEn?.results?.[0]?.key ||
+          trailerData?.results?.[0]?.key ||
           null;
-
         setTreilerKey(key);
       } catch (error) {
         if (!isMounted) return;
@@ -63,20 +56,20 @@ const MovieDetailsPage = () => {
       }
     };
 
-    fetchMovieDetails();
+    fetchSerialsDetails();
 
     return () => {
       isMounted = false;
     };
-  }, [movieId]);
+  }, [serialId]);
 
   return (
     <>
       <Section>
         <Container>
-          {!isLoading && movieDetails && (
-            <MovieDetailsItem
-              movieDetails={movieDetails}
+          {!isLoading && serialDetails && (
+            <SerialDetailsItem
+              serialDetails={serialDetails}
               trailerKey={trailerKey}
             />
           )}
@@ -89,4 +82,4 @@ const MovieDetailsPage = () => {
   );
 };
 
-export default MovieDetailsPage;
+export default SerialsDetailsPage;

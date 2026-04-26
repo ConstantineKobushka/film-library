@@ -8,7 +8,7 @@ import SerialDetailsItem from '../../components/SerialDetailsItem/SerialDetailsI
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 
-import { getSerialById, getSerialTraler } from '../../api/moviesApi';
+import { getSerialById, getSerialTrailer } from '../../api/moviesApi';
 
 const SerialsDetailsPage = () => {
   const [serialDetails, setSerialDetails] = useState(null);
@@ -27,21 +27,31 @@ const SerialsDetailsPage = () => {
           isError: false,
           errorMessage: '',
         });
-        const [serialData, trailerData] = await Promise.all([
+        const [serialData, trailerUk, trailerEn] = await Promise.all([
           getSerialById(serialId),
-          getSerialTraler(serialId),
+          getSerialTrailer(serialId, 'uk-UA'),
+          getSerialTrailer(serialId, 'en-US'),
         ]);
+
         if (!isMounted) return;
+
         setSerialDetails(serialData);
+
         const key =
-          trailerData?.results?.find(
+          trailerUk?.results?.find(
             item => item.site === 'YouTube' && item.type === 'Trailer'
           )?.key ||
-          trailerData?.results?.[0]?.key ||
+          trailerUk?.results?.[0]?.key ||
+          trailerEn?.results?.find(
+            item => item.site === 'YouTube' && item.type === 'Trailer'
+          )?.key ||
+          trailerEn?.results?.[0]?.key ||
           null;
+
         setTreilerKey(key);
       } catch (error) {
         if (!isMounted) return;
+
         setError({
           isError: true,
           errorMessage: error.message || 'Помилка завантаження',

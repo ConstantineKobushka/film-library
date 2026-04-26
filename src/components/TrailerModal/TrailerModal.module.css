@@ -1,16 +1,13 @@
 .modal {
   width: 100%;
-  max-width: 1420px;
+  max-width: 1024px;
   background: #111111;
-
   border-radius: 18px;
   overflow: hidden;
-
   box-shadow:
     0 20px 80px rgba(0, 0, 0, 0.55),
     0 0 0 1px rgba(255, 255, 255, 0.04);
 }
-
 .top {
   display: flex;
   justify-content: space-between;
@@ -18,21 +15,18 @@
   padding: 15px 20px;
   background: #000000;
 }
-
 .title {
   font-size: 18px;
   color: #fafafa;
 }
-
 .btn {
   padding: 5px;
   background-color: transparent;
   border: none;
 }
-
 .frame {
+  display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   border: none;
-  display: block;
 }
