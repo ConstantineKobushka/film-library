@@ -1,15 +1,17 @@
 .header {
-  padding: 15px 0;
-  max-width: 425px;
   margin: 10px auto 0;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(15, 23, 42) 0%, rgba(30, 41, 59) 100%);
 }
 .inner {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+}
+.inner {
+  padding: 15px 10px;
+  max-width: 425px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(15, 23, 42) 0%, rgba(30, 41, 59) 100%);
 }
 .btn {
   font-size: 14px;
@@ -21,6 +23,9 @@
 }
 
 @media only screen and (min-width: 375px) {
+  .inner {
+    gap: 10px;
+  }
   .btn {
     font-size: 16px;
   }
@@ -28,13 +33,23 @@
 
 @media only screen and (min-width: 425px) {
   .inner {
-    gap: 40px;
+    gap: 20px;
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  .inner {
+    gap: 10px;
+  }
+  .btn {
+    font-size: 16px;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .header {
+  .inner {
     max-width: 768px;
+    grid-template-columns: 1fr auto 1fr;
   }
   .btn {
     font-size: 18px;
@@ -42,7 +57,7 @@
 }
 
 @media only screen and (min-width: 1440px) {
-  .header {
+  .inner {
     max-width: 1440px;
   }
   .btn {

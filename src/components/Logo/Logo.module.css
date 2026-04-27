@@ -1,9 +1,15 @@
 .img {
   max-width: none;
-  width: 70px;
+  width: 60px;
 }
 
 @media only screen and (min-width: 375px) {
+  .img {
+    width: 70px;
+  }
+}
+
+@media only screen and (min-width: 425px) {
   .img {
     width: 80px;
   }
