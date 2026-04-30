@@ -101,11 +101,12 @@ const MovieDetailsItem = ({ movieDetails, trailerKey }) => {
             <MovieRating voteAverage={vote_average} />
 
             <button
-              className={styles.link}
+              className={clsx(styles.link, !trailerKey && styles.disabled)}
               type="button"
               onClick={openTrailerModal}
+              disabled={!trailerKey}
             >
-              Відтворити трейлер
+              {trailerKey ? 'Відтворити трейлер' : 'Трейлер відсутній'}
             </button>
 
             <div className={styles.description}>
